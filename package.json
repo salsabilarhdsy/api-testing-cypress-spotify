@@ -1,0 +1,17 @@
+{
+  "name": "api-testing-cypress-starter",
+  "version": "1.0.0",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "cy:run": "cypress run",
+    "cy:open": "cypress open",
+    "cy:api": "cypress run --spec 'cypress/e2e/api/*.cy.js'"
+  },
+  "author": "",
+  "license": "ISC",
+  "description": "",
+  "devDependencies": {
+    "cypress": "^14.3.0"
+  }
+}
