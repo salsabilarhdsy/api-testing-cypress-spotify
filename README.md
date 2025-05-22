@@ -81,11 +81,9 @@ The test automation includes:
 
 ## Configuration
 
-Cypress configuration is defined in `cypress.config.js`:
+BaseUrl configuration is defined in `cypress.config.js`:
 
 ```js
-const { defineConfig } = require("cypress");
-
 module.exports = defineConfig({
   e2e: {
     baseUrl: 'https://api.spotify.com/v1',
