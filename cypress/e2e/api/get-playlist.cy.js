@@ -195,4 +195,55 @@ describe('Spotify API - Get Playlist', () => {
       expect(body).not.to.have.property('items');
     });
   });
+  it('Verify use of nonexistent fields=songs returns empty response', () => {
+    const playlistId = '1YPdHoHM7HuBlwXDQYxZzj';
+    cy.request({
+      method: 'GET',
+      url: `/playlists/${playlistId}?fields=songs`,
+      headers: {
+        Authorization: `Bearer ${token}`
+      }
+    }).then((response) => {
+      expect(response.status).to.eq(200);
+      const body = response.body;
+
+      // Assertions
+      expect(body).that.is.empty;
+    });
+  });
+  it('Verify that nested filter in tracks.items are filtered using fields', () => {
+    const playlistId = '1YPdHoHM7HuBlwXDQYxZzj';
+    cy.request({
+      method: 'GET',
+      url: `/playlists/${playlistId}?fields=tracks(items(track(name)))`,
+      headers: {
+        Authorization: `Bearer ${token}`
+      }
+    }).then((response) => {
+      expect(response.status).to.eq(200);
+      const body = response.body;
+
+      // Assertions
+      expect(body).to.have.property('tracks').that.is.an('object');
+      expect(body.tracks).to.have.property('items').that.is.an('array');
+      expect(body.tracks.items[0]).to.have.property('track').that.is.an('object');
+      expect(body.tracks.items[0].track).to.have.property('name').that.is.a('string');
+    });
+  });
+  it('Verify use of nonexistent fields=tracks.falseparam returns empty track', () => {
+    const playlistId = '1YPdHoHM7HuBlwXDQYxZzj';
+    cy.request({
+      method: 'GET',
+      url: `/playlists/${playlistId}?fields=tracks.falseparam`,
+      headers: {
+        Authorization: `Bearer ${token}`
+      }
+    }).then((response) => {
+      expect(response.status).to.eq(200);
+      const body = response.body;
+
+      // Assertions
+      expect(body).to.have.property('tracks').that.is.empty;
+    });
+  });
 });
