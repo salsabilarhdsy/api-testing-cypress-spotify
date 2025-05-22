@@ -24,12 +24,10 @@
 // -- This will overwrite an existing command --
 // Cypress.Commands.overwrite('visit', (originalFn, url, options) => { ... })
 
-
 Cypress.Commands.add('loginSpotify', () => {
-  const clientId = '8ac605ae30b0405984b99adec371c36c';
-  const clientSecret = 'eb992ef3349b4c9580ca8c2af554c63c';
-  const refreshToken = 'AQCDW5o9sdlm32jqqpKc_fJWpLu8ar0X84_5pbOppeqhWYLBlonn-QMGwZg1MtbMZPMwZ21JtBcSUXyCFB1SbYVfII51QhSfiQsOnxTRNzO-PaScT22kacOtM_xhfMjJqAA';
-
+  const clientId = Cypress.env('SPOTIFY_CLIENT_ID');
+  const clientSecret = Cypress.env('SPOTIFY_CLIENT_SECRET');
+  const refreshToken = Cypress.env('SPOTIFY_REFRESH_TOKEN');
   const basicAuth = btoa(`${clientId}:${clientSecret}`);
 
   return cy.request({
