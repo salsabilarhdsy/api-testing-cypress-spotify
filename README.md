@@ -90,11 +90,3 @@ module.exports = defineConfig({
   },
 });
 ```
-
-Ensure your Spotify access token logic is set up in custom commands.
-
----
-
-## License
-
-This project is open-sourced under the [MIT License](LICENSE).
