@@ -49,7 +49,7 @@ SPOTIFY_REFRESH_TOKEN=your_refresh_token
 
 ##### Playlist ID in get-playlist.cy.js might need to be updated based on your application and the registered user.
 
-## 🧪 Running Tests
+## Running Tests
 
 ### Headless Mode (CLI)
 
@@ -97,6 +97,6 @@ Ensure your Spotify access token logic is set up in custom commands.
 
 ---
 
-## 📄 License
+## License
 
 This project is open-sourced under the [MIT License](LICENSE).
